@@ -4,15 +4,28 @@
   "scripts": {
     "dev": "tsx watch src/index.ts",
     "build": "tsc",
-    "start": "node dist/index.js"
+    "start": "node dist/index.js",
+    "seed": "ts-node prisma/seeder/index.ts"
   },
   "dependencies": {
     "@hono/node-server": "^1.19.5",
-    "hono": "^4.10.2"
+    "@hono/swagger-ui": "^0.5.2",
+    "@hono/zod-openapi": "^1.1.4",
+    "@prisma/client": "^6.18.0",
+    "bcrypt": "^6.0.0",
+    "dotenv": "^17.2.3",
+    "hono": "^4.10.2",
+    "multer": "^2.0.2",
+    "postgres": "^3.4.7",
+    "tsconfig-paths": "^4.2.0",
+    "zod": "^4.1.12"
   },
   "devDependencies": {
+    "@types/bcrypt": "^6.0.0",
     "@types/node": "^20.11.17",
+    "prisma": "^6.18.0",
+    "ts-node": "^10.9.2",
     "tsx": "^4.7.1",
-    "typescript": "^5.8.3"
+    "typescript": "^5.9.3"
   }
 }
