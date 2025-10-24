@@ -2,8 +2,9 @@ import { IPostResponseDTO } from "@/dto/post.dto"
 import { prisma } from "@/lib/encryption.js"
 
 export const postModel = {
-	async findAll(page = 1, limit = 10) {
+	async findAll(page = 1, limit = 10, search = '') {
 		const offset = (page - 1) * limit
+		const searchTerm = `%${search}%`
 
 		const totalItemsResult = await prisma.$queryRaw<{ count: bigint }[]>
 		`
@@ -21,6 +22,7 @@ export const postModel = {
 			FROM posts p
 			JOIN users u ON p.user_id = u.id
 			WHERE p.deleted_at IS NULL
+			AND (p.title ILIKE ${searchTerm} OR p.content ILIKE ${searchTerm})
 			ORDER BY p.created_at DESC
 			LIMIT ${limit} OFFSET ${offset};
 		`

@@ -1,14 +1,14 @@
 import { z } from "zod"
 
 export const PostCreateSchema = z.object({
-	title: z.string().min(3, "Title is required"),
-	content: z.string().min(5, "Content is required"),
+	title: z.string().min(1, "Title is required"),
+	content: z.string().min(1, "Content is required"),
 	image: z.string().optional(),
 })
 
 export const PutUpdateSchema = z.object({
-	title: z.string().min(3, "Title is required"),
-	content: z.string().min(5, "Content is required"),
+	title: z.string().min(1, "Title is required"),
+	content: z.string().min(1, "Content is required"),
 	image: z.string().optional(),
 })
 
@@ -22,12 +22,10 @@ export interface IPostResponseDTO {
 	image?: string | null
 	created_at: Date
 	updated_at: Date
-	user: {
-		id: number
-		username: string
-		email: string
-		role: string
-	}
+	user_id: number
+	username: string
+	email: string
+	role: string
 }
 
 export interface IPaginationMeta {

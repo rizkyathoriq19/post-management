@@ -10,11 +10,12 @@ export const postController = {
 		try {
 			const page = Number(c.req.query("page") || 1)
 			const limit = Number(c.req.query("limit") || 10)
+			const search = String(c.req.query("search") || "")
 
 			const user = c.get("user")
 			if (!user) return res(c, "err", 401, "Unauthorized")
 	
-			const result = await postModel.findAll(page, limit)
+			const result = await postModel.findAll(page, limit, search)
 			return res(c, "get", 200, "Posts fetched successfully",
 				result.data,
 				result.meta.current_page,
@@ -109,7 +110,8 @@ export const postController = {
 			if (!existingPost) {
 				return res(c, "err", 404, "Post not found")
 			}
-			if (existingPost.id !== user.id) {
+
+			if (existingPost.user_id !== user.id) {
 				return res(c, "err", 403, "Forbidden: You can only update your own posts")
 			}
 			
