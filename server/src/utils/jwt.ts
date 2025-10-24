@@ -7,7 +7,7 @@ export const generateToken = async (user: IUserToken) => {
     const token = await sign({ ...user, exp: expiresIn }, SECRET)
 	return {
 		token: token,
-		expiresAt: new Date(expiresIn * 1000)
+		expires_at: new Date(expiresIn * 1000)
 	}
 }
 
@@ -16,7 +16,7 @@ export const refreshGenerateToken = async (user: IUserToken) => {
     const token = await sign({ ...user, exp: expiresIn }, REFRESH_SECRET)
     return {
 		token: token,
-		expiresAt: new Date(expiresIn * 1000)
+		expires_at: new Date(expiresIn * 1000)
 	}
 }
 

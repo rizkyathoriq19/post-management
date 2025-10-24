@@ -11,6 +11,7 @@ api.get("/ping", async (c: Context)  => {
 
 // Modular routes
 api.route("/auth", RoutesRegistry.AuthRoutes)
+api.route("/post", RoutesRegistry.PostRoutes)
 
 api.all("*", async (c: Context) => {
 	return res(c, "err", 404, "Route not found")

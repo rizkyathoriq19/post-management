@@ -31,9 +31,9 @@ export const authController = {
 					role: u.role as "admin" | "user",
 				},
 				token: {
-					accessToken: accessToken.token,
-					refreshToken: refreshToken.token,
-					expiresAt: accessToken.expiresAt,
+					access_token: accessToken.token,
+					refresh_token: refreshToken.token,
+					expires_at: accessToken.expires_at,
 				},
 			}
 
@@ -70,7 +70,7 @@ export const authController = {
 
 	async signout(c: Context) {
 		try {
-			const refreshToken = c.get("token").refreshToken
+			const refreshToken = c.get("token").refresh_token
 
 			await authModel.revokeSession(refreshToken)
 			return res(c, "post", 200, "Signout successful")

@@ -57,6 +57,7 @@ export const res = (
 					status,
 					code: statusCode,
 					message,
+					data,
 				}, statusCode
 			)
 

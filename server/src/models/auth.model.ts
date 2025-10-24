@@ -37,11 +37,11 @@ export const authModel = {
 		return result[0]
 	},
 
-	async createSession(user_id: number, token: string, refreshToken: string, ip?: string, ua?: string) {
+	async createSession(userId: number, token: string, refreshToken: string, ip?: string, ua?: string) {
 		return await prisma.$executeRaw
 		`
 			INSERT INTO user_sessions (user_id, token, refresh_token, ip_address, user_agent)
-			VALUES (${user_id}, ${token}, ${refreshToken}, ${ip || ""}, ${ua || ""});
+			VALUES (${userId}, ${token}, ${refreshToken}, ${ip || ""}, ${ua || ""});
 		`
 	},
 
